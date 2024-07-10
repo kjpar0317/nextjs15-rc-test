@@ -4,34 +4,39 @@ import * as React from "react";
 import { motion } from "framer-motion";
 
 import { cn } from "@/lib/utils";
+import CardSkeleton from "@/components/skeleton/CardSkeleton";
 
 const Card = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <motion.div
-    layout
-    initial={{ scale: 0.5 }}
-    animate={{ scale: 1 }}
-    transition={{
-      type: "spring",
-      stiffness: 150,
-      // damping: 25,
-      delay: 0.5,
-    }}
-    whileHover={{
-      scale: 1.3,
-    }}
-  >
-    <div
-      ref={ref}
-      className={cn(
-        "rounded-lg border bg-card text-card-foreground shadow-sm",
-        className
-      )}
-      {...props}
-    />
-  </motion.div>
+  <React.Suspense fallback={<CardSkeleton />}>
+    <motion.div
+      layout
+      initial={{ scale: 0.5 }}
+      animate={{ scale: 1 }}
+      transition={{
+        type: "spring",
+        stiffness: 80, // 단단함
+        // damping: 25, // 제동
+        delay: 0.2,
+        delayChildren: 0.2,
+        staggerChildren: 0.2,
+      }}
+      whileHover={{
+        scale: 1.3,
+      }}
+    >
+      <div
+        ref={ref}
+        className={cn(
+          "rounded-lg border bg-card text-card-foreground shadow-sm",
+          className
+        )}
+        {...props}
+      />
+    </motion.div>
+  </React.Suspense>
 ));
 Card.displayName = "Card";
 
