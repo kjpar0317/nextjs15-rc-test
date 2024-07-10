@@ -1,7 +1,5 @@
 "use client";
 
-import type { ReactNode } from "react";
-
 import { Suspense } from "react";
 import * as LabelPrimitive from "@radix-ui/react-label";
 
