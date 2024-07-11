@@ -3,6 +3,7 @@ import Label from "@/components/ui/custom/Label";
 import { Input } from "@/components/ui/input";
 import Select from "@/components/ui/custom/Select";
 import Radio from "@/components/ui/custom/Radio";
+import { Textarea } from "@/components/ui/textarea";
 
 export default function FormTestPage() {
   return (
@@ -31,6 +32,9 @@ export default function FormTestPage() {
             },
           ]}
         />
+      </div>
+      <div className="flex items-center space-x-2">
+        <Textarea placeholder="test" />
       </div>
     </>
   );

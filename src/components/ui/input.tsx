@@ -14,7 +14,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       <motion.div
         initial={{ width: "10px" }}
         animate={{ width: "100%" }}
-        transition={{ duration: 1, origin: 1 }}
+        transition={{ duration: 0.5, origin: 1 }}
       >
         <input
           type={type}
