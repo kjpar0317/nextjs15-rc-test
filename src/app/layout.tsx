@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 
+import { ThemeProvider } from "@/components/provider/ThemeProvider";
+import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
 import "./globals.css";
@@ -25,14 +27,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-8 sm:p-20">
-          <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-            {children}
-          </main>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} w-full h-full`}
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Header />
+          <div className="font-sans w-full h-[calc(100vh_-_100px)]">
+            <main className="flex flex-col gap-8 row-start-2 items-center justify-items-center justify-center w-full h-full">
+              {children}
+            </main>
+          </div>
           <Footer />
-        </div>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -38,7 +38,9 @@ export default function Label({
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
+      transition={{ duration: 0.5 }}
+      whileHover={{ scale: 1 }}
+      whileTap={{ scale: 0.5 }}
     >
       <Suspense fallback={<OneLineSkeleton />}>
         <Select {...rest}>

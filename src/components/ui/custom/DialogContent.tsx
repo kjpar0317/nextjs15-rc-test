@@ -1,9 +1,6 @@
-"use client";
-
 import type { ReactNode } from "react";
 
 import { Suspense } from "react";
-import { motion } from "framer-motion";
 
 import {
   DialogContent as OrgDialogContent,

@@ -12,9 +12,10 @@ const Checkbox = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>
 >(({ className, ...props }, ref) => (
   <motion.div
-    initial={{ scale: 0.2 }}
-    animate={{ scale: 1 }}
-    transition={{ duration: 0.3 }}
+    init={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    whileHover={{ scale: 1.1 }}
+    whileTap={{ scale: 0.5 }}
   >
     <CheckboxPrimitive.Root
       ref={ref}

@@ -3,8 +3,6 @@ import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 
-import Movie from "@/components/feature/movie";
-
 export default function Footer() {
   return (
     <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
@@ -51,7 +49,6 @@ export default function Footer() {
         About
       </Link>
       <Button loading={true}>ddddd</Button>
-      {/* <Movie /> */}
     </footer>
   );
 }

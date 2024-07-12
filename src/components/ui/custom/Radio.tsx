@@ -45,7 +45,9 @@ export default function Radio({
             list.length > 0 &&
             list.map((elem: RadioCodeProps, index: number) => (
               <div key={index} className="flex items-center space-x-2">
-                <RadioGroupItem value={elem.code} id={elem.code} />
+                <motion.div whileHover={{ scale: 1 }} whileTap={{ scale: 0.5 }}>
+                  <RadioGroupItem value={elem.code} id={elem.code} />
+                </motion.div>
                 <Label htmlFor={elem.code}>{elem.value}</Label>
               </div>
             ))}

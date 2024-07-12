@@ -15,6 +15,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         initial={{ width: "10px" }}
         animate={{ width: "100%" }}
         transition={{ duration: 0.5, origin: 1 }}
+        whileHover={{ scale: 1 }}
+        whileTap={{ scale: 0.5 }}
       >
         <input
           type={type}

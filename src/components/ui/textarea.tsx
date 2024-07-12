@@ -15,6 +15,8 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         initial={{ width: "10px" }}
         animate={{ width: "100%" }}
         transition={{ duration: 0.5, origin: 1 }}
+        whileHover={{ scale: 1 }}
+        whileTap={{ scale: 0.5 }}
       >
         <textarea
           className={cn(
