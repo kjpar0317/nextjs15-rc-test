@@ -6,6 +6,7 @@ import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import DialogContent from "@/components/ui/custom/DialogContent";
 import NumberAnimation from "@/components/animation/NumberAnimation";
 import StaggerTest from "@/components/feature/StaggerTest";
+import RotatingAnimation from "@/components/animation/RotatingAnimation";
 
 export default function AboutPage() {
   return (
@@ -40,6 +41,7 @@ export default function AboutPage() {
         </DialogContent>
       </Dialog>
       <StaggerTest />
+      <RotatingAnimation>dfasfasdfasdf</RotatingAnimation>
     </RootWrapAnimation>
   );
 }
