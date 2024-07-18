@@ -3,6 +3,7 @@
 import * as React from "react";
 import { motion } from "framer-motion";
 
+import { animateExpandVariants } from "@/constant/child-animate";
 import { cn } from "@/lib/utils";
 import CardSkeleton from "@/components/skeleton/CardSkeleton";
 
@@ -11,22 +12,7 @@ const Card = React.forwardRef<
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
   <React.Suspense fallback={<CardSkeleton />}>
-    <motion.div
-      layout
-      initial={{ scale: 0.5 }}
-      animate={{ scale: 1 }}
-      transition={{
-        type: "spring",
-        stiffness: 80, // 단단함
-        // damping: 25, // 제동
-        delay: 0.2,
-        delayChildren: 0.2,
-        staggerChildren: 0.2,
-      }}
-      whileHover={{
-        scale: 1.3,
-      }}
-    >
+    <motion.div variants={animateExpandVariants}>
       <div
         ref={ref}
         className={cn(

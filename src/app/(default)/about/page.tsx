@@ -1,12 +1,18 @@
+import RootWrapAnimation from "@/components/animation/RootWrapAnimation";
 import { Button } from "@/components/ui/button";
 import Label from "@/components/ui/custom/Label";
 import { Input } from "@/components/ui/input";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import DialogContent from "@/components/ui/custom/DialogContent";
+import NumberAnimation from "@/components/animation/NumberAnimation";
+import StaggerTest from "@/components/feature/StaggerTest";
 
 export default function AboutPage() {
   return (
-    <div>
+    <RootWrapAnimation>
+      <div>
+        <NumberAnimation to={50000} />
+      </div>
       <Dialog>
         <DialogTrigger asChild>
           <Button variant="outline">Edit Profile</Button>
@@ -33,6 +39,7 @@ export default function AboutPage() {
           </div>
         </DialogContent>
       </Dialog>
-    </div>
+      <StaggerTest />
+    </RootWrapAnimation>
   );
 }

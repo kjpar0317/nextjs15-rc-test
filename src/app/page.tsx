@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import RootWrapAnimation from "@/components/animation/RootWrapAnimation";
 import {
   Card,
   CardContent,
@@ -13,7 +14,7 @@ import TextAnimation from "@/components/animation/TextAnimation";
 
 export default function Home() {
   return (
-    <>
+    <RootWrapAnimation>
       <Card className="w-[400px]">
         <CardHeader>
           <CardTitle>
@@ -75,6 +76,6 @@ export default function Home() {
           <Button>Read our docs</Button>
         </CardFooter>
       </Card>
-    </>
+    </RootWrapAnimation>
   );
 }

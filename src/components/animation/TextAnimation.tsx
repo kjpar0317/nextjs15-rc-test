@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 
+import { animateTextVariants } from "@/constant/child-animate";
 export interface TextAnimationProps {
   text: string;
 }
@@ -11,15 +12,7 @@ export default function TextAnimation({ text }: Readonly<TextAnimationProps>) {
   return (
     <>
       {splitText.map((el, i) => (
-        <motion.span
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{
-            duration: 0.25,
-            delay: i / 10 + 0.5,
-          }}
-          key={i}
-        >
+        <motion.span variants={animateTextVariants(i)} key={i}>
           {el}{" "}
         </motion.span>
       ))}

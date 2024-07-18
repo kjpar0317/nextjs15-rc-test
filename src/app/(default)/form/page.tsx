@@ -4,10 +4,11 @@ import { Input } from "@/components/ui/input";
 import Select from "@/components/ui/custom/Select";
 import Radio from "@/components/ui/custom/Radio";
 import { Textarea } from "@/components/ui/textarea";
+import RootWrapAnimation from "@/components/animation/RootWrapAnimation";
 
 export default function FormTestPage() {
   return (
-    <>
+    <RootWrapAnimation>
       <div className="flex items-center space-x-2">
         <Checkbox id="terms" />
         <Label htmlFor="terms">Accept terms and conditions</Label>
@@ -36,6 +37,6 @@ export default function FormTestPage() {
       <div className="flex items-center space-x-2">
         <Textarea placeholder="test" />
       </div>
-    </>
+    </RootWrapAnimation>
   );
 }

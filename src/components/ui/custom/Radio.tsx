@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { motion } from "framer-motion";
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 
+import { animateActionVariants } from "@/constant/child-animate";
 import { cn } from "@/lib/utils";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import Label from "@/components/ui/custom/Label";
@@ -27,11 +28,7 @@ export default function Radio({
   ...rest
 }: Readonly<RadioProps>) {
   return (
-    <motion.div
-      initial={{ scale: 0.2 }}
-      animate={{ scale: 1 }}
-      transition={{ duration: 0.3 }}
-    >
+    <motion.div variants={animateActionVariants}>
       <Suspense fallback={<OneLineSkeleton />}>
         <RadioGroup
           defaultValue={select}
