@@ -1,12 +1,21 @@
+import Image from "next/image";
+
 import RootWrapAnimation from "@/components/animation/RootWrapAnimation";
 import { Button } from "@/components/ui/button";
 import Label from "@/components/ui/custom/Label";
 import { Input } from "@/components/ui/input";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import DialogContent from "@/components/ui/custom/DialogContent";
 import NumberAnimation from "@/components/animation/NumberAnimation";
 import StaggerTest from "@/components/feature/StaggerTest";
-import RotatingAnimation from "@/components/animation/RotatingAnimation";
+import RotatingAroundDivAnimation from "@/components/animation/RotatingAroundDivAnimation";
 
 export default function AboutPage() {
   return (
@@ -41,7 +50,37 @@ export default function AboutPage() {
         </DialogContent>
       </Dialog>
       <StaggerTest />
-      <RotatingAnimation>dfasfasdfasdf</RotatingAnimation>
+      <RotatingAroundDivAnimation height="h-[210px]">
+        <Card className="w-[400px] h-[230px]">
+          <CardHeader>
+            <CardTitle>
+              <Image
+                className="dark:invert"
+                src="/next.svg"
+                alt="Next.js logo"
+                width={180}
+                height={38}
+                priority
+              />
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ol className="font-mono list-inside list-decimal text-sm text-center sm:text-left">
+              <li className="mb-2">
+                Get started by editing{" "}
+                <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
+                  src/app/page.tsx
+                </code>
+              </li>
+              <li>Save and see your changes instantly.</li>
+            </ol>
+          </CardContent>
+          <CardFooter className="flex justify-between">
+            <Button variant="outline">Deploy now</Button>
+            <Button>Read our docs</Button>
+          </CardFooter>
+        </Card>
+      </RotatingAroundDivAnimation>
     </RootWrapAnimation>
   );
 }

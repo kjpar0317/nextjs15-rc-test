@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 
-import { animateTextVariants } from "@/constant/child-animate";
+import { animateTextVariants } from "@/constant/animate";
 export interface TextAnimationProps {
   text: string;
 }

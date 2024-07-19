@@ -1,9 +1,7 @@
 "use client";
 import type { ReactNode } from "react";
 
-import { MotionConfig, motion, AnimatePresence, m } from "framer-motion";
-
-import { animateExpandVariants } from "@/constant/root-animate";
+import { MotionConfig, motion, AnimatePresence } from "framer-motion";
 
 /*
 👉🏻 spring(기본값)은 현실세계의 물리법칙을 시뮬레이트함.
@@ -14,22 +12,45 @@ import { animateExpandVariants } from "@/constant/root-animate";
 */
 
 interface RootWrapAnimationProps {
+  parallel?: boolean;
+  duration?: number;
+  stagger?: number;
   children: ReactNode;
 }
 
 export default function RootWrapAnimation({
+  parallel = false,
+  duration = 1.5,
+  stagger = 0.5,
   children,
 }: Readonly<RootWrapAnimationProps>) {
+  const staggerAnimate = {
+    animate: {
+      transition: {
+        type: "spring",
+        duration: duration,
+        bounce: 0.5,
+        delayChildren: stagger, // 자식요소들에게 delay적용
+        staggerChildren: stagger, // 자식요소들에게 순서대로 증감하는 delay적용
+      },
+    },
+  };
+
   return (
     <MotionConfig transition={{ type: "spring" }}>
-      <motion.div
-        variants={animateExpandVariants}
-        initial="init"
-        animate="animate"
-        exit="exit"
-      >
-        {children}
-      </motion.div>
+      <AnimatePresence>
+        <motion.div
+          variants={!parallel ? staggerAnimate : {}}
+          initial="init"
+          animate="animate"
+          trasition="transition"
+          whileHover="hover"
+          whileTap="tap"
+          exit="exit"
+        >
+          {children}
+        </motion.div>
+      </AnimatePresence>
     </MotionConfig>
   );
 }
