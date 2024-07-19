@@ -16,14 +16,15 @@ export default function RotatingAroundDivAnimation({
   height = "w-full",
   children,
 }: Readonly<RotatingAroundDivAnimationProps>) {
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const [dimensions, setDimensions] = useState({ width: -5, height: -3 });
   const containerRef = useRef<HTMLDivElement>(null);
   const dotVariants = {
     animate: {
-      x: [0, dimensions.width, dimensions.width, 0, 0],
-      y: [0, 0, dimensions.height, dimensions.height, 0],
+      x: [-5, dimensions.width, dimensions.width, -5, -5],
+      y: [-3, -3, dimensions.height, dimensions.height, -3],
+      delay: 3,
       transition: {
-        duration: 6,
+        duration: 8,
         repeat: Infinity,
         ease: "linear",
       },
@@ -33,9 +34,9 @@ export default function RotatingAroundDivAnimation({
   const glowVariants = {
     animate: {
       boxShadow: [
-        "0 0 20px 10px rgba(255, 255, 255, 0.5)",
-        "0 0 40px 20px rgba(255, 255, 255, 1)",
-        "0 0 20px 10px rgba(255, 255, 255, 0.5)",
+        "0 0 40px 20px rgba(255, 255, 255, 0.5)",
+        "0 0 60px 40px rgba(255, 255, 255, 1)",
+        "0 0 40px 20px rgba(255, 255, 255, 0.5)",
       ],
       transition: {
         duration: 1,
@@ -59,9 +60,9 @@ export default function RotatingAroundDivAnimation({
     <div ref={containerRef} className={cn("relative w-full", height)}>
       <motion.div
         variants={dotVariants}
-        initial="animate"
+        initial="init"
         animate="animate"
-        className="w-2 h-2 rounded-full bg-primary blur-sm shadow-2xl"
+        className="w-1 h-1 rounded-full bg-primary blur-sm shadow-2xl"
       >
         <motion.div
           variants={glowVariants}

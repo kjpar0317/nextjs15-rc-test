@@ -1,4 +1,4 @@
-export const animateVariants = {
+export const ANIMATE_VARIANTS = {
   expand: {
     init: { opacity: 0, scale: 0.5 },
     animate: { opacity: 1, scale: 1 },
@@ -26,14 +26,3 @@ export const animateVariants = {
     tap: { scale: 0.9 },
   },
 };
-
-export function animateTextVariants(i: number) {
-  return {
-    init: { opacity: 0 },
-    animate: { opacity: 1 },
-    transition: {
-      duration: 0.25,
-      delay: i / 10 + 0.5,
-    },
-  };
-}

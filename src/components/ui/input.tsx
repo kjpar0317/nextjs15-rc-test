@@ -3,7 +3,7 @@
 import * as React from "react";
 import { motion } from "framer-motion";
 
-import { animateVariants } from "@/constant/animate";
+import { ANIMATE_VARIANTS } from "@/constant/animate";
 import { cn } from "@/lib/utils";
 
 export interface InputProps
@@ -12,7 +12,7 @@ export interface InputProps
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, ...props }, ref) => {
     return (
-      <motion.div variants={animateVariants.longer}>
+      <motion.div variants={ANIMATE_VARIANTS.longer}>
         <input
           type={type}
           className={cn(

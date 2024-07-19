@@ -50,7 +50,7 @@ export default function AboutPage() {
         </DialogContent>
       </Dialog>
       <StaggerTest />
-      <RotatingAroundDivAnimation height="h-[210px]">
+      <RotatingAroundDivAnimation height="mt-3 h-[210px]">
         <Card className="w-[400px] h-[230px]">
           <CardHeader>
             <CardTitle>

@@ -6,7 +6,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
 
-import { animateVariants } from "@/constant/animate";
+import { ANIMATE_VARIANTS } from "@/constant/animate";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
@@ -81,7 +81,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     }
 
     return (
-      <motion.div variants={animateVariants.action}>
+      <motion.div variants={ANIMATE_VARIANTS.action}>
         <button
           className={cn(buttonVariants({ variant, size, className }))}
           disabled={loading}

@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import * as SelectPrimitive from "@radix-ui/react-select";
 import { motion } from "framer-motion";
 
-import { animateVariants } from "@/constant/animate";
+import { ANIMATE_VARIANTS } from "@/constant/animate";
 import {
   Select,
   SelectContent,
@@ -36,7 +36,7 @@ export default function Label({
   ...rest
 }: Readonly<SelectProps>) {
   return (
-    <motion.div varinats={animateVariants.onExpand}>
+    <motion.div varinats={ANIMATE_VARIANTS.onExpand}>
       <Suspense fallback={<OneLineSkeleton />}>
         <Select {...rest}>
           <SelectTrigger className={className}>
