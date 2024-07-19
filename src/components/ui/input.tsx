@@ -3,7 +3,11 @@
 import * as React from "react";
 import { motion } from "framer-motion";
 
-import { ANIMATE_VARIANTS } from "@/constant/animate";
+import {
+  ANIMATE_VARIANTS,
+  ANIMATE_COMMON_HOVER,
+  ANIMATE_COMMON_TAP,
+} from "@/constant/animate";
 import { cn } from "@/lib/utils";
 
 export interface InputProps
@@ -12,7 +16,12 @@ export interface InputProps
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, ...props }, ref) => {
     return (
-      <motion.div variants={ANIMATE_VARIANTS.longer}>
+      <motion.div
+        layout
+        variants={ANIMATE_VARIANTS.longer}
+        whileHover={ANIMATE_COMMON_HOVER}
+        whilleTap={ANIMATE_COMMON_TAP}
+      >
         <input
           type={type}
           className={cn(

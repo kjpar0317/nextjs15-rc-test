@@ -5,14 +5,22 @@ import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
 import { Check } from "lucide-react";
 import { motion } from "framer-motion";
 
-import { ANIMATE_VARIANTS } from "@/constant/animate";
+import {
+  ANIMATE_VARIANTS,
+  ANIMATE_COMMON_HOVER,
+  ANIMATE_COMMON_TAP,
+} from "@/constant/animate";
 import { cn } from "@/lib/utils";
 
 const Checkbox = React.forwardRef<
   React.ElementRef<typeof CheckboxPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>
 >(({ className, ...props }, ref) => (
-  <motion.div variants={ANIMATE_VARIANTS.expand}>
+  <motion.div
+    variants={ANIMATE_VARIANTS.expand}
+    whileHover={ANIMATE_COMMON_HOVER}
+    whilleTap={ANIMATE_COMMON_TAP}
+  >
     <CheckboxPrimitive.Root
       ref={ref}
       className={cn(

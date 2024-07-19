@@ -44,8 +44,6 @@ export default function RootWrapAnimation({
           initial="init"
           animate="animate"
           trasition="transition"
-          whileHover="hover"
-          whileTap="tap"
           exit="exit"
         >
           {children}
