@@ -40,4 +40,5 @@ yarn-error.log*
 *.lockb
 
 # playwright
-test-results
+/test-results
+/playwright-report
