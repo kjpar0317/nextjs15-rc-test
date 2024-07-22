@@ -16,13 +16,19 @@ export default function RotatingAroundDivAnimation({
   height = "w-full",
   children,
 }: Readonly<RotatingAroundDivAnimationProps>) {
-  const [dimensions, setDimensions] = useState({ width: -5, height: -3 });
+  const [dimensions, setDimensions] = useState({ width: -5, height: 2 });
   const containerRef = useRef<HTMLDivElement>(null);
   const dotVariants = {
-    animate: {
-      x: [-5, dimensions.width, dimensions.width, -5, -5],
-      y: [-3, -3, dimensions.height, dimensions.height, -3],
+    init: {
       delay: 3,
+    },
+    animate: {
+      x: [-5, dimensions.width - 5, dimensions.width - 5, -5, -5],
+      y: [2, 2, dimensions.height - 2, dimensions.height - 2, 2],
+      rotate: [
+        0, 0, 0, 0, 90, 90, 90, 90, 180, 180, 180, 180, 270, 270, 270, 270, 360,
+      ],
+      // rotate: [0, 0, 90, 180, 270],
       transition: {
         duration: 8,
         repeat: Infinity,
@@ -34,9 +40,9 @@ export default function RotatingAroundDivAnimation({
   const glowVariants = {
     animate: {
       boxShadow: [
-        "0 0 40px 20px rgba(255, 255, 255, 0.5)",
-        "0 0 60px 40px rgba(255, 255, 255, 1)",
-        "0 0 40px 20px rgba(255, 255, 255, 0.5)",
+        "0 0 40px 20px hsl(var(--primary))",
+        "0 0 60px 40px hsl(var(--primary))",
+        "0 0 40px 20px hsl(var(--primary))",
       ],
       transition: {
         duration: 1,
@@ -62,7 +68,7 @@ export default function RotatingAroundDivAnimation({
         variants={dotVariants}
         initial="init"
         animate="animate"
-        className="w-1 h-1 rounded-full bg-primary blur-sm shadow-2xl"
+        className="w-2 h-2 rounded-full bg-primary blur-sm shadow-2xl"
       >
         <motion.div
           variants={glowVariants}
