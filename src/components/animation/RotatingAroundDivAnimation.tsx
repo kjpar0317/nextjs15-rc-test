@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { useTheme } from "next-themes";
 
 import { cn } from "@/lib/utils";
 
@@ -16,6 +17,7 @@ export default function RotatingAroundDivAnimation({
   height = "w-full",
   children,
 }: Readonly<RotatingAroundDivAnimationProps>) {
+  const { theme } = useTheme();
   const [dimensions, setDimensions] = useState({ width: -5, height: 2 });
   const containerRef = useRef<HTMLDivElement>(null);
   const dotVariants = {
@@ -40,9 +42,9 @@ export default function RotatingAroundDivAnimation({
   const glowVariants = {
     animate: {
       boxShadow: [
-        "0 0 40px 20px hsl(var(--primary))",
-        "0 0 60px 40px hsl(var(--primary))",
-        "0 0 40px 20px hsl(var(--primary))",
+        "0 0 40px 20px rgba(255, 255, 255, 0.7)",
+        "0 0 60px 40px rgba(255, 255, 255, 0.7)",
+        "0 0 40px 20px rgba(255, 255, 255, 0.7)",
       ],
       transition: {
         duration: 1,
@@ -64,18 +66,20 @@ export default function RotatingAroundDivAnimation({
 
   return (
     <div ref={containerRef} className={cn("relative w-full", height)}>
-      <motion.div
-        variants={dotVariants}
-        initial="init"
-        animate="animate"
-        className="w-2 h-2 rounded-full bg-primary blur-sm shadow-2xl"
-      >
+      {theme === "dark" && (
         <motion.div
-          variants={glowVariants}
+          variants={dotVariants}
+          initial="init"
           animate="animate"
-          className="absoulte w-full h-full bg-primary rounded-full blur-lg"
-        />
-      </motion.div>
+          className="w-2 h-1 rounded-full bg-white blur-sm"
+        >
+          <motion.div
+            variants={glowVariants}
+            animate="animate"
+            className="absoulte w-full h-full bg-primary rounded-full blur-lg"
+          />
+        </motion.div>
+      )}
       {children}
     </div>
   );

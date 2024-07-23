@@ -5,11 +5,12 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
+import { useTheme } from "next-themes";
 
 import {
   ANIMATE_VARIANTS,
-  ANIMATE_COMMON_HOVER,
-  ANIMATE_COMMON_TAP,
+  ANIMATE_LIGHT_HOVER,
+  ANIMATE_DARK_HOVER,
 } from "@/constant/animate";
 import { cn } from "@/lib/utils";
 
@@ -54,6 +55,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     { className, variant, size, asChild = false, loading, children, ...props },
     ref
   ) => {
+    const { theme } = useTheme();
+
     if (asChild) {
       return (
         <Slot ref={ref} {...props}>
@@ -87,8 +90,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <motion.div
         variants={ANIMATE_VARIANTS.action}
-        whileHover={ANIMATE_COMMON_HOVER}
-        whilleTap={ANIMATE_COMMON_TAP}
+        whileHover={theme === "dark" ? ANIMATE_DARK_HOVER : ANIMATE_LIGHT_HOVER}
+        // whilleTap={ANIMATE_COMMON_TAP}
       >
         <button
           className={cn(buttonVariants({ variant, size, className }))}

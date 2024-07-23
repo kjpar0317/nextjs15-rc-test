@@ -3,11 +3,7 @@
 import * as React from "react";
 import { motion } from "framer-motion";
 
-import {
-  ANIMATE_VARIANTS,
-  ANIMATE_COMMON_HOVER,
-  ANIMATE_COMMON_TAP,
-} from "@/constant/animate";
+import { ANIMATE_VARIANTS, ANIMATE_COMMON_HOVER } from "@/constant/animate";
 import { cn } from "@/lib/utils";
 
 export interface InputProps
@@ -20,7 +16,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         layout
         variants={ANIMATE_VARIANTS.longer}
         whileHover={ANIMATE_COMMON_HOVER}
-        whilleTap={ANIMATE_COMMON_TAP}
+        // whilleTap={ANIMATE_COMMON_TAP}
       >
         <input
           type={type}

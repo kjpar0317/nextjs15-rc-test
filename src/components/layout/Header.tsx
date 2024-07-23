@@ -2,10 +2,16 @@
 
 import { useTheme } from "next-themes";
 
+import { useEffect } from "react";
 import Switch from "@/components/ui/custom/Switch";
 
 export default function Header() {
   const { setTheme } = useTheme();
+
+  useEffect(() => {
+    setTheme("light");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   function changeTheme(checked: boolean) {
     setTheme(checked ? "dark" : "light");

@@ -19,7 +19,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       <motion.div
         variants={ANIMATE_VARIANTS.expand}
         whileHover={ANIMATE_COMMON_HOVER}
-        whileTap={ANIMATE_COMMON_TAP}
+        // whileTap={ANIMATE_COMMON_TAP}
       >
         <textarea
           className={cn(

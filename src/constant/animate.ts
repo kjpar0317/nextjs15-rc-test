@@ -21,6 +21,15 @@ export const ANIMATE_VARIANTS = {
 };
 
 export const ANIMATE_COMMON_HOVER = {
+  scale: 1.1,
+};
+
+export const ANIMATE_LIGHT_HOVER = {
+  filter: "brightness(75%)",
+  scale: 1.1,
+};
+
+export const ANIMATE_DARK_HOVER = {
   filter: "brightness(150%)",
   scale: 1.1,
 };

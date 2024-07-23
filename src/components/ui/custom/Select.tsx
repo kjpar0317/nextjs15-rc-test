@@ -43,7 +43,7 @@ export default function Label({
     <motion.div
       varinats={ANIMATE_VARIANTS.onExpand}
       whileHover={ANIMATE_COMMON_HOVER}
-      whileTap={ANIMATE_COMMON_TAP}
+      // whileTap={ANIMATE_COMMON_TAP}
     >
       <Suspense fallback={<OneLineSkeleton />}>
         <Select {...rest}>
