@@ -10,19 +10,20 @@ type TransitionOptions = Partial<{
 }>;
 
 // Variant: 각 애니메이션 상태 (hidden, visible, exit)의 속성 정의
-type Variant = {
-  opacity?: number; // 투명도
-  width?: number | string;
-  height?: number | string;
+type Variant = Partial<{
+  opacity?: number | number[]; // 투명도
+  width?: number | string | number[] | string[];
+  height?: number | string | number[] | string[];
   filter?: string; // 필터 효과 (e.g., "blur(5px)")
-  scale?: number; // 크기 비율 (e.g., 1.5)
-  y?: number | string; // Y축 위치 (e.g., 100, "50%")
-  rotateY?: number; // Y축 회전 각도 (e.g., 180)
-  rotate?: number; // 회전 각도 (e.g., 45)
-  scaleX?: number; // X축 크기 비율
-  x?: number | string; // X축 위치 (e.g., 100, "50%")
+  scale?: number | number[]; // 크기 비율 (e.g., 1.5)
+  rotateY?: number | number[]; // Y축 회전 각도 (e.g., 180)
+  rotate?: number | number[]; // 회전 각도 (e.g., 45)
+  scaleX?: number | number[]; // X축 크기 비율
+  x?: number | string | number[] | string[]; // X축 위치 (e.g., 100, "50%")
+  y?: number | string | number[] | string[]; // Y축 위치 (e.g., 100, "50%")
+  boxShadow?: string | string[];
   transition?: TransitionOptions; // 전환 옵션
-};
+}>;
 
 type FramerMotionVariant = {
   init?: Variant;
@@ -30,14 +31,7 @@ type FramerMotionVariant = {
   transition?: TransitionOptions;
 };
 
-export type ConstantFramerMotionVariant = {
-  expand: FramerMotionVariant;
-  onExpand: FramerMotionVariant;
-  longer: FramerMotionVariant;
-  action: FramerMotionVariant;
-};
-
-export const ANIMATE_VARIANTS: ConstantFramerMotionVariant = {
+export const ANIMATE_VARIANTS: Record<string, FramerMotionVariant> = {
   expand: {
     init: { opacity: 0, scale: 0.5 },
     animate: { opacity: 1, scale: 1 },
