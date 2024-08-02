@@ -8,7 +8,7 @@ export default function Footer() {
     <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
       <Link
         className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-        href="/"
+        href="/home"
         rel="noopener noreferrer"
       >
         <Image
@@ -47,6 +47,13 @@ export default function Footer() {
           height={16}
         />
         About
+      </Link>
+      <Link
+        className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+        href="/"
+        rel="noopener noreferrer"
+      >
+        Logout
       </Link>
       <Button loading={true}>ddddd</Button>
     </footer>

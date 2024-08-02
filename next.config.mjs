@@ -4,9 +4,9 @@ const nextConfig = {
   bundlePagesRouterDependencies: true,
   // App Router와 Pages Router에서 특정 패키지들을 모두 번들링하지 않음
   // serverExternalPackages: ["package-name"],
-  experimental: {
-    reactCompiler: true,
-  },
+  // experimental: {
+  //   reactCompiler: true,
+  // },
 };
 
 export default nextConfig;
