@@ -64,38 +64,48 @@ export default function Home() {
                 </h3>
                 <p className="text-gray-400">Login...</p>
               </div>
-              <div className="space-y-6">
-                <div className="">
-                  <motion.input
-                    id="id"
-                    type="text"
-                    className="w-full text-sm px-4 py-3 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:border-purple-400"
-                    placeholder="Login ID"
-                    whileFocus={{ scale: 1.05, boxShadow: "0 0 10px #6a82fb" }}
-                  />
-                </div>
+              <form action="/home">
+                <div className="space-y-6">
+                  <div className="">
+                    <motion.input
+                      id="id"
+                      type="text"
+                      className="w-full text-sm px-4 py-3 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:border-purple-400"
+                      placeholder="Login ID"
+                      whileFocus={{
+                        scale: 1.05,
+                        boxShadow: "0 0 10px #6a82fb",
+                      }}
+                    />
+                  </div>
 
-                <div className="relative">
-                  <motion.input
-                    id="password"
-                    type="password"
-                    className="text-sm text-gray-200 px-4 py-3 rounded-lg w-full bg-gray-200 focus:bg-gray-100 border border-gray-200 focus:outline-none focus:border-purple-400"
-                    placeholder="Login Password"
-                    whileFocus={{ scale: 1.05, boxShadow: "0 0 10px #fc5c7d" }}
-                  />
-                  <div className="flex items-center absolute inset-y-0 right-0 mr-3  text-sm leading-5"></div>
-                </div>
+                  <div className="relative">
+                    <motion.input
+                      id="password"
+                      type="password"
+                      className="text-sm text-gray-200 px-4 py-3 rounded-lg w-full bg-gray-200 focus:bg-gray-100 border border-gray-200 focus:outline-none focus:border-purple-400"
+                      placeholder="Login Password"
+                      whileFocus={{
+                        scale: 1.05,
+                        boxShadow: "0 0 10px #fc5c7d",
+                      }}
+                    />
+                    <div className="flex items-center absolute inset-y-0 right-0 mr-3  text-sm leading-5"></div>
+                  </div>
 
-                <div className="flex items-center justify-between"></div>
-                <div>
-                  <button
-                    type="submit"
-                    className="w-full flex justify-center bg-purple-800  hover:bg-purple-700 text-gray-100 p-3  rounded-lg tracking-wide font-semibold  cursor-pointer transition ease-in duration-500"
-                  >
-                    Login
-                  </button>
+                  <div className="flex items-center justify-between"></div>
+                  <div>
+                    <motion.button
+                      type="submit"
+                      className="w-full flex justify-center bg-purple-800  hover:bg-purple-700 text-gray-100 p-3  rounded-lg tracking-wide font-semibold  cursor-pointer transition ease-in duration-500"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      Login
+                    </motion.button>
+                  </div>
                 </div>
-              </div>
+              </form>
               <div className="mt-7 text-center text-gray-300 text-xs">
                 <span>Copyright © 2024</span>
               </div>
