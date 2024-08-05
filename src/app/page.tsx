@@ -39,8 +39,8 @@ export default function Home() {
           ))}
         </div>
       </div>
-      <div className="relative   min-h-screen  sm:flex sm:flex-row  justify-center bg-transparent rounded-3xl shadow-xl">
-        <div className="flex-col flex  self-center lg:px-14 sm:max-w-4xl xl:max-w-md  z-10">
+      <div className="relative min-h-screen  sm:flex sm:flex-row  justify-center bg-transparent rounded-3xl shadow-xl">
+        <div className="flex-col flex  self-center lg:px-14 sm:max-w-4xl xl:max-w-md z-10">
           <div className="self-start hidden lg:flex flex-col  text-gray-300">
             <h1 className="my-3 font-semibold text-4xl">Test Site</h1>
             <p className="pr-3 text-sm opacity-75">
@@ -56,8 +56,8 @@ export default function Home() {
           animate={{ opacity: 1, y: 250, rotateY: 0 }}
           transition={{ duration: 1 }}
         >
-          <div className="flex justify-center self-center z-10">
-            <div className="p-12 bg-white mx-auto rounded-3xl w-96 ">
+          <div className="flex justify-center self-center z-30">
+            <div className="p-12 bg-white mx-auto rounded-3xl w-96">
               <div className="mb-7">
                 <h3 className="font-semibold text-2xl text-gray-800">
                   Test Site
@@ -90,14 +90,14 @@ export default function Home() {
                         boxShadow: "0 0 10px #fc5c7d",
                       }}
                     />
-                    <div className="flex items-center absolute inset-y-0 right-0 mr-3  text-sm leading-5"></div>
+                    <div className="flex items-center absolute inset-y-0 right-0 mr-3 text-sm leading-5"></div>
                   </div>
 
                   <div className="flex items-center justify-between"></div>
-                  <div>
+                  <div className="z-30">
                     <motion.button
                       type="submit"
-                      className="w-full flex justify-center bg-purple-800  hover:bg-purple-700 text-gray-100 p-3  rounded-lg tracking-wide font-semibold  cursor-pointer transition ease-in duration-500"
+                      className="w-full flex justify-center bg-purple-800  hover:bg-purple-700 text-gray-100 p-3 rounded-lg tracking-wide font-semibold cursor-pointer transition ease-in duration-500 z-auto"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                     >
@@ -113,7 +113,7 @@ export default function Home() {
           </div>
         </motion.div>
       </div>
-      <footer className="bg-transparent absolute w-full bottom-0 left-0 z-30">
+      <footer className="bg-transparent absolute w-full bottom-0 left-0 z-20">
         <div className="container p-5 mx-auto  flex items-center justify-between "></div>
       </footer>
       <svg
