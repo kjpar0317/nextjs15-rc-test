@@ -6,39 +6,40 @@ import { motion } from "framer-motion";
 export default function Home() {
   return (
     <div className="login-app">
-      <div className="animated-background z-40">
-        {[...Array(50)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="particle"
-            initial={{ opacity: 0, y: 0, x: 0 }}
-            animate={{
-              opacity: [0, 1, 0],
-              // rotate: [0, 360, 90, 180],
-              y: [0, Math.random() * 800 - 400, Math.random() * 800 - 400],
-              x: [0, Math.random() * 1500 - 400, Math.random() * 800 - 400],
-              filter: "brightness(150%)",
-              boxShadow: [
-                "0 0 20px 10px rgba(255, 255, 255, 0.5)",
-                "0 0 30px 20px rgba(255, 255, 255, 0.5)",
-                "0 0 20px 10px rgba(255, 255, 255, 0.5)",
-              ],
-              scale: [0, 1, 3, 1, 0],
-            }}
-            transition={{
-              duration: Math.random() * 10 + 5,
-              repeat: Infinity,
-              repeatType: "loop",
-              ease: "easeInOut",
-            }}
-            whileFocus={{
-              opacity: 1,
-              scale: 10,
-            }}
-          />
-        ))}
+      <div className="bg-purple-900 absolute top-0 left-0 bg-gradient-to-b from-gray-900 via-gray-900 to-purple-800 bottom-0 leading-5 h-full w-full overflow-hidden">
+        <div className="animated-background">
+          {[...Array(50)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="particle"
+              initial={{ opacity: 0, y: 0, x: 0 }}
+              animate={{
+                opacity: [0, 1, 0],
+                // rotate: [0, 360, 90, 180],
+                y: [0, Math.random() * 800 - 400, Math.random() * 800 - 400],
+                x: [0, Math.random() * 1500 - 400, Math.random() * 800 - 400],
+                filter: "brightness(150%)",
+                boxShadow: [
+                  "0 0 20px 10px rgba(255, 255, 255, 0.5)",
+                  "0 0 30px 20px rgba(255, 255, 255, 0.5)",
+                  "0 0 20px 10px rgba(255, 255, 255, 0.5)",
+                ],
+                scale: [0, 1, 3, 1, 0],
+              }}
+              transition={{
+                duration: Math.random() * 10 + 5,
+                repeat: Infinity,
+                repeatType: "loop",
+                ease: "easeInOut",
+              }}
+              whileFocus={{
+                opacity: 1,
+                scale: 10,
+              }}
+            />
+          ))}
+        </div>
       </div>
-      <div className="bg-purple-900 absolute top-0 left-0 bg-gradient-to-b from-gray-900 via-gray-900 to-purple-800 bottom-0 leading-5 h-full w-full overflow-hidden"></div>
       <div className="relative   min-h-screen  sm:flex sm:flex-row  justify-center bg-transparent rounded-3xl shadow-xl">
         <div className="flex-col flex  self-center lg:px-14 sm:max-w-4xl xl:max-w-md  z-10">
           <div className="self-start hidden lg:flex flex-col  text-gray-300">
