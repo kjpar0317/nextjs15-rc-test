@@ -1,14 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-
-import Label from "@/components/ui/custom/Label";
-import TextAnimation from "@/components/animation/TextAnimation";
 
 export default function Home() {
   return (
     <div className="login-app">
-      <div className="animated-background">
+      <div className="animated-background z-40">
         {[...Array(50)].map((_, i) => (
           <motion.div
             key={i}
@@ -40,72 +38,85 @@ export default function Home() {
           />
         ))}
       </div>
-      <div className="login-container text-gray-300">
+      <div className="bg-purple-900 absolute top-0 left-0 bg-gradient-to-b from-gray-900 via-gray-900 to-purple-800 bottom-0 leading-5 h-full w-full overflow-hidden"></div>
+      <div className="relative   min-h-screen  sm:flex sm:flex-row  justify-center bg-transparent rounded-3xl shadow-xl">
+        <div className="flex-col flex  self-center lg:px-14 sm:max-w-4xl xl:max-w-md  z-10">
+          <div className="self-start hidden lg:flex flex-col  text-gray-300">
+            <h1 className="my-3 font-semibold text-4xl">Test Site</h1>
+            <p className="pr-3 text-sm opacity-75">
+              Lorem ipsum is placeholder text commonly used in the graphic,
+              print, and publishing industries for previewing layouts and visual
+              mockups
+            </p>
+          </div>
+        </div>
         <motion.div
           className="login-box"
           initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0, rotateY: 0 }}
+          animate={{ opacity: 1, y: 250, rotateY: 0 }}
           transition={{ duration: 1 }}
         >
-          <h1 className="text-center">
-            <TextAnimation text="LOGIN PAGE" />
-          </h1>
-          <div className="p-5">
-            <TextAnimation text="이건 테스트 사이트 입니다. 아무 의미가 없습니다." />
+          <div className="flex justify-center self-center z-10">
+            <div className="p-12 bg-white mx-auto rounded-3xl w-96 ">
+              <div className="mb-7">
+                <h3 className="font-semibold text-2xl text-gray-800">
+                  Test Site
+                </h3>
+                <p className="text-gray-400">Login...</p>
+              </div>
+              <div className="space-y-6">
+                <div className="">
+                  <motion.input
+                    id="id"
+                    type="text"
+                    className="w-full text-sm px-4 py-3 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:border-purple-400"
+                    placeholder="Login ID"
+                    whileFocus={{ scale: 1.05, boxShadow: "0 0 10px #6a82fb" }}
+                  />
+                </div>
+
+                <div className="relative">
+                  <motion.input
+                    id="password"
+                    type="password"
+                    className="text-sm text-gray-200 px-4 py-3 rounded-lg w-full bg-gray-200 focus:bg-gray-100 border border-gray-200 focus:outline-none focus:border-purple-400"
+                    placeholder="Login Password"
+                    whileFocus={{ scale: 1.05, boxShadow: "0 0 10px #fc5c7d" }}
+                  />
+                  <div className="flex items-center absolute inset-y-0 right-0 mr-3  text-sm leading-5"></div>
+                </div>
+
+                <div className="flex items-center justify-between"></div>
+                <div>
+                  <button
+                    type="submit"
+                    className="w-full flex justify-center bg-purple-800  hover:bg-purple-700 text-gray-100 p-3  rounded-lg tracking-wide font-semibold  cursor-pointer transition ease-in duration-500"
+                  >
+                    Login
+                  </button>
+                </div>
+              </div>
+              <div className="mt-7 text-center text-gray-300 text-xs">
+                <span>Copyright © 2024</span>
+              </div>
+            </div>
           </div>
-          <form action="/home" className="flex flex-between">
-            <div className="space-x-4 text-gray-300 flex flex-between">
-              <Label htmlFor="id" className="w-full md:w-1/2">
-                ID
-              </Label>
-              <motion.input
-                id="id"
-                type="text"
-                className="text-gray-800"
-                placeholder="Login ID"
-                whileFocus={{ scale: 1.05, boxShadow: "0 0 10px #6a82fb" }}
-              />
-            </div>
-            <div className="space-x-4 text-gray-300 flex flex-between">
-              <Label htmlFor="password" className="w-full md:w-1/2">
-                Password
-              </Label>
-              <motion.input
-                id="password"
-                type="password"
-                className="text-gray-800"
-                placeholder="Login Password"
-                whileFocus={{ scale: 1.05, boxShadow: "0 0 10px #fc5c7d" }}
-              />
-            </div>
-            <motion.button
-              type="submit"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              Sign In
-            </motion.button>
-          </form>
         </motion.div>
       </div>
-      <div className="neon-bars">
-        {[...Array(3)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="neon-bar"
-            animate={{
-              width: ["0%", "100%", "0%"],
-              opacity: [0, 1, 0],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 1.5,
-            }}
-          />
-        ))}
-      </div>
+      <footer className="bg-transparent absolute w-full bottom-0 left-0 z-30">
+        <div className="container p-5 mx-auto  flex items-center justify-between "></div>
+      </footer>
+      <svg
+        className="absolute bottom-0 left-0 "
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1440 320"
+      >
+        <path
+          fill="#fff"
+          fillOpacity="1"
+          d="M0,0L40,42.7C80,85,160,171,240,197.3C320,224,400,192,480,154.7C560,117,640,75,720,74.7C800,75,880,117,960,154.7C1040,192,1120,224,1200,213.3C1280,203,1360,149,1400,122.7L1440,96L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"
+        ></path>
+      </svg>
     </div>
   );
 }
