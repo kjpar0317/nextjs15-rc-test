@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 
 import TextAnimation from "@/components/animation/TextAnimation";
 
-export default function Home() {
+export default function Dashboard() {
   return (
     <RootWrapAnimation>
       <Card className="w-[400px]">

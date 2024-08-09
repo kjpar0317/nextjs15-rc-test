@@ -18,12 +18,14 @@ export interface DialogContentProps {
   title?: string;
   subTitle?: string;
   children?: ReactNode;
+  onClose?: () => void;
 }
 
 export default function DialogContent({
   title,
-  subTitle,
+  subTitle = "",
   children,
+  onClose,
 }: Readonly<DialogContentProps>) {
   return (
     <OrgDialogContent>
@@ -34,15 +36,13 @@ export default function DialogContent({
               <TextAnimation text={title} />
             </DialogTitle>
           )}
-          {subTitle && (
-            <DialogDescription>
-              <TextAnimation text={subTitle} />
-            </DialogDescription>
-          )}
+          <DialogDescription>
+            <TextAnimation text={subTitle} />
+          </DialogDescription>
         </DialogHeader>
         <Suspense fallback={<CardSkeleton />}>{children}</Suspense>
         <DialogFooter>
-          <Button type="submit">Save changes</Button>
+          {onClose && <Button onClick={() => onClose()}>Close</Button>}
         </DialogFooter>
       </RootWrapAnimation>
     </OrgDialogContent>
