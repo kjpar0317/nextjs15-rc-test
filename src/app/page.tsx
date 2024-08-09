@@ -64,7 +64,7 @@ export default function Home() {
                 </h3>
                 <p className="text-gray-400">Login...</p>
               </div>
-              <form action="/home">
+              <form action="/dashboard">
                 <div className="space-y-6">
                   <div className="">
                     <motion.input

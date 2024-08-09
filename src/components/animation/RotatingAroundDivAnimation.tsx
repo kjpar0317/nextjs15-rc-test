@@ -9,11 +9,13 @@ import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 
 interface RotatingAroundDivAnimationProps {
+  width?: string;
   height?: string;
   children: ReactNode;
 }
 
 export default function RotatingAroundDivAnimation({
+  width = "",
   height = "w-full",
   children,
 }: Readonly<RotatingAroundDivAnimationProps>) {
@@ -65,7 +67,7 @@ export default function RotatingAroundDivAnimation({
   }, []);
 
   return (
-    <div ref={containerRef} className={cn("relative w-full", height)}>
+    <div ref={containerRef} className={cn(width, height)}>
       {theme === "dark" && (
         <motion.div
           variants={dotVariants}
