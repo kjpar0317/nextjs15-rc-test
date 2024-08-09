@@ -7,6 +7,7 @@ import useCommon from "@/service/useCommon";
 import { ThemeProvider } from "@/components/provider/ThemeProvider";
 import Header from "@/components/layouts/Header";
 import Footer from "@/components/layouts/Footer";
+import TransitionPage from "@/components/provider/TransitionPage";
 import Navigation from "@/components/layouts/sidebar/Navigation";
 
 export default function RootLayout({
@@ -42,8 +43,8 @@ export default function RootLayout({
             )}
           >
             <Header />
-            <main className="font-sans w-full h-full item-center justify-center align-middle gap-8 p-4 overflow-y-auto">
-              {children}
+            <main className="font-sans w-full h-full item-center justify-center align-middle gap-4 p-4 overflow-y-auto">
+              <TransitionPage>{children}</TransitionPage>
             </main>
             <Footer />
           </div>
