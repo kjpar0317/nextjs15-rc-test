@@ -1,4 +1,3 @@
-import type { TData } from "@/type/aggrid";
 import type {
   GridReadyEvent,
   CellClickedEvent,

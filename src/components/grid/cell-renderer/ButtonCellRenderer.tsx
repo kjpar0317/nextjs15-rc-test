@@ -1,4 +1,3 @@
-import { TData } from "@/type/aggrid";
 import { includes } from "lodash-es";
 import { IoCloseOutline } from "react-icons/io5";
 
