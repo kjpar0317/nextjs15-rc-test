@@ -1,16 +1,44 @@
 "use client";
 
+import { useActionState } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 
-export default function Home() {
+import TextAnimation from "@/components/animation/TextAnimation";
+
+export default function Login() {
+  const router = useRouter();
+  const [error, submitAction, isPending] = useActionState(
+    async (formData: any) => {
+      // const error = await updateName(formData.get("name"));
+      // if (error) {
+      //   return error;
+      // }
+      router.replace("/dashboard");
+      return true;
+    },
+    false
+  );
+
+  // const handleSubmit = async () => {
+  //   startTransition(async () => {
+  //     // const error = await updateName(name);
+  //     // if (error) {
+  //     //   setError(error);
+  //     //   return;
+  //     // }
+  //     router.replace("/dashboard");
+  //   });
+  // };
+
   return (
     <div className="login-app">
       <div className="bg-purple-900 absolute top-0 left-0 bg-gradient-to-b from-gray-900 via-gray-900 to-purple-800 bottom-0 leading-5 h-full w-full overflow-hidden">
-        <div className="animated-background">
+        <div className="login-animated-background">
           {[...Array(50)].map((_, i) => (
             <motion.div
               key={i}
-              className="particle"
+              className="login-particle"
               initial={{ opacity: 0, y: 0, x: 0 }}
               animate={{
                 opacity: [0, 1, 0],
@@ -39,14 +67,12 @@ export default function Home() {
           ))}
         </div>
       </div>
-      <div className="relative min-h-screen  sm:flex sm:flex-row  justify-center bg-transparent rounded-3xl shadow-xl">
+      <div className="relative   min-h-screen  sm:flex sm:flex-row  justify-center bg-transparent rounded-3xl shadow-xl">
         <div className="flex-col flex  self-center lg:px-14 sm:max-w-4xl xl:max-w-md">
           <div className="self-start hidden lg:flex flex-col  text-gray-300">
-            <h1 className="my-3 font-semibold text-4xl">Test Site</h1>
+            <h1 className="my-3 font-semibold text-4xl">INNOGRID</h1>
             <p className="pr-3 text-sm opacity-75">
-              Lorem ipsum is placeholder text commonly used in the graphic,
-              print, and publishing industries for previewing layouts and visual
-              mockups
+              <TextAnimation text="AWS, AZURE, KT, NHN 빌링 포털 사이트" />
             </p>
           </div>
         </div>
@@ -60,17 +86,17 @@ export default function Home() {
             <div className="p-12 bg-white mx-auto rounded-3xl w-96">
               <div className="mb-7">
                 <h3 className="font-semibold text-2xl text-gray-800">
-                  Test Site
+                  Billing PoC{" "}
                 </h3>
-                <p className="text-gray-400">Login...</p>
+                <p className="text-gray-400">로그인 해주세요</p>
               </div>
-              <form action="/dashboard">
+              <form action={submitAction}>
                 <div className="space-y-6">
                   <div className="">
                     <motion.input
                       id="id"
                       type="text"
-                      className="w-full text-sm px-4 py-3 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:border-purple-400"
+                      className="w-full text-sm text-gray-700  px-4 py-3 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:border-purple-400"
                       placeholder="Login ID"
                       whileFocus={{
                         scale: 1.05,
@@ -83,7 +109,7 @@ export default function Home() {
                     <motion.input
                       id="password"
                       type="password"
-                      className="text-sm text-gray-200 px-4 py-3 rounded-lg w-full bg-gray-200 focus:bg-gray-100 border border-gray-200 focus:outline-none focus:border-purple-400"
+                      className="w-full text-sm text-gray-700 px-4 py-3 rounded-lg bg-gray-200 focus:bg-gray-100 border border-gray-200 focus:outline-none focus:border-purple-400"
                       placeholder="Login Password"
                       whileFocus={{
                         scale: 1.05,
@@ -93,20 +119,23 @@ export default function Home() {
                     <div className="flex items-center absolute inset-y-0 right-0 mr-3 text-sm leading-5"></div>
                   </div>
 
-                  <div className="flex items-center justify-between"></div>
+                  <div className="flex items-center justify-between">
+                    {error}
+                  </div>
                   <div>
                     <motion.button
                       type="submit"
-                      className="w-full flex justify-center bg-purple-800  hover:bg-purple-700 text-gray-100 p-3 rounded-lg tracking-wide font-semibold cursor-pointer transition ease-in duration-500"
+                      className="w-full justify-center bg-purple-800  hover:bg-purple-700 text-gray-100 p-3 rounded-lg tracking-wide font-semibold cursor-pointer transition ease-in duration-500"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
+                      disabled={isPending}
                     >
                       Login
                     </motion.button>
                   </div>
                 </div>
               </form>
-              <div className="mt-7 text-center text-gray-300 text-xs">
+              <div className="mt-7 text-center text-gray-800 text-xs">
                 <span>Copyright © 2024</span>
               </div>
             </div>
@@ -114,10 +143,10 @@ export default function Home() {
         </motion.div>
       </div>
       <footer className="bg-transparent absolute w-full bottom-0 left-0">
-        <div className="container p-5 mx-auto flex items-center justify-between"></div>
+        <div className="container p-5 mx-auto  flex items-center justify-between"></div>
       </footer>
       <svg
-        className="absolute bottom-0 left-0"
+        className="absolute bottom-0 left-0 "
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1440 320"
       >
