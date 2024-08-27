@@ -6,7 +6,7 @@ import type {
   GridApi,
 } from "ag-grid-community";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useTransition } from "react";
 import { AgGridReact } from "ag-grid-react";
 
 import { cn } from "@/lib/utils";
@@ -39,14 +39,18 @@ export default function AgGridClientSide({
   skeleton = false,
   onGridReady,
   onCellClicked,
-}: AgGridClientSideProps) {
+}: Readonly<AgGridClientSideProps>) {
   const windowSize = useResize();
   const { isOpenSidebar } = useCommon();
   const [gridApi, setGridApi] = useState<GridApi>();
+  const [, startTransition] = useTransition();
 
   const defColDef = useMemo((): ColDef | undefined => {
     if (skeleton) {
-      return { ...defaultColDef, cellRenderer: LoadingSkeletonCellRenderer };
+      return {
+        ...defaultColDef,
+        loadingCellRenderer: LoadingSkeletonCellRenderer,
+      };
     } else {
       return defaultColDef;
     }
@@ -54,8 +58,10 @@ export default function AgGridClientSide({
 
   useEffect(() => {
     if (gridApi) {
-      gridApi.refreshCells({ force: true });
-      gridApi.sizeColumnsToFit();
+      startTransition(() => {
+        gridApi.refreshCells({ force: true });
+        gridApi.sizeColumnsToFit();
+      });
     }
   }, [windowSize.width, isOpenSidebar]);
 

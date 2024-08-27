@@ -70,9 +70,9 @@ export default function Login() {
       <div className="relative   min-h-screen  sm:flex sm:flex-row  justify-center bg-transparent rounded-3xl shadow-xl">
         <div className="flex-col flex  self-center lg:px-14 sm:max-w-4xl xl:max-w-md">
           <div className="self-start hidden lg:flex flex-col  text-gray-300">
-            <h1 className="my-3 font-semibold text-4xl">INNOGRID</h1>
+            <h1 className="my-3 font-semibold text-4xl">Test</h1>
             <p className="pr-3 text-sm opacity-75">
-              <TextAnimation text="AWS, AZURE, KT, NHN 빌링 포털 사이트" />
+              <TextAnimation text="Test Site" />
             </p>
           </div>
         </div>
@@ -83,10 +83,10 @@ export default function Login() {
           transition={{ duration: 1 }}
         >
           <div className="flex justify-center self-center">
-            <div className="p-12 bg-white mx-auto rounded-3xl w-96">
+            <div className="p-12 bg-white mx-auto rounded-3xl w-96 border-2">
               <div className="mb-7">
                 <h3 className="font-semibold text-2xl text-gray-800">
-                  Billing PoC{" "}
+                  Test Site{" "}
                 </h3>
                 <p className="text-gray-400">로그인 해주세요</p>
               </div>
