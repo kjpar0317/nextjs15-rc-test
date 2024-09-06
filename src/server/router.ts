@@ -31,8 +31,6 @@ export const appRouter = router({
   ...etcRouter(publicProcedure),
 });
 
-// console.log({ ...movieRouter });
-
 export type AppRouter = typeof appRouter;
 
 export const trpcClient = createTRPCProxyClient<AppRouter>({

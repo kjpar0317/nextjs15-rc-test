@@ -1,4 +1,6 @@
-export function movieRouter(router: any) {
+import type { ProcedureBuilder } from "@trpc/server";
+
+export function movieRouter(router: ProcedureBuilder<any>) {
   return {
     movieList: router.query(async () => {
       const data = await fetch(
