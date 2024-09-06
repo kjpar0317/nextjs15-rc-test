@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import useSWR from "swr";
 
 let _sidebar: boolean = true;
@@ -13,10 +14,13 @@ export default function useCommon(): UseCommonProps {
     () => _sidebar
   );
 
-  function setOpenSidebar(sidebar: boolean) {
-    _sidebar = sidebar;
-    return mutateOpenSidebar();
-  }
+  const setOpenSidebar = useCallback(
+    (sidebar: boolean) => {
+      _sidebar = sidebar;
+      return mutateOpenSidebar();
+    },
+    [mutateOpenSidebar]
+  );
 
   return {
     isOpenSidebar,

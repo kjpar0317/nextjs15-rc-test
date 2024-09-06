@@ -6,7 +6,7 @@ import type {
   GridApi,
 } from "ag-grid-community";
 
-import { useState, useEffect, useTransition } from "react";
+import { useState, useEffect, useMemo, useTransition } from "react";
 import { AgGridReact } from "ag-grid-react";
 
 import { cn } from "@/lib/utils";
@@ -45,12 +45,16 @@ export default function AgGridClientSide({
   const [gridApi, setGridApi] = useState<GridApi>();
   const [, startTransition] = useTransition();
 
-  const defColDef =
-    (skeleton && {
-      ...defaultColDef,
-      loadingCellRenderer: LoadingSkeletonCellRenderer,
-    }) ||
-    defaultColDef;
+  const defColDef = useMemo((): ColDef | undefined => {
+    if (skeleton) {
+      return {
+        ...defaultColDef,
+        loadingCellRenderer: LoadingSkeletonCellRenderer,
+      };
+    } else {
+      return defaultColDef;
+    }
+  }, [defaultColDef, skeleton]);
 
   useEffect(() => {
     return () => gridApi?.destroy();
