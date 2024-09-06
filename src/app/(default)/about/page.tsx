@@ -1,4 +1,6 @@
+import { use } from "react";
 import Image from "next/image";
+import { trpcClient } from "@/server/router";
 
 import RootWrapAnimation from "@/components/animation/RootWrapAnimation";
 import { Button } from "@/components/ui/button";
@@ -18,6 +20,8 @@ import StaggerTest from "@/components/feature/StaggerTest";
 import RotatingAroundDivAnimation from "@/components/animation/RotatingAroundDivAnimation";
 
 export default function AboutPage() {
+  const test = use(trpcClient.hello.query("world"));
+
   return (
     <RootWrapAnimation>
       <div>
@@ -25,7 +29,7 @@ export default function AboutPage() {
       </div>
       <Dialog>
         <DialogTrigger asChild>
-          <Button variant="outline">Edit Profile</Button>
+          <Button variant="outline">Edit Profile {test}</Button>
         </DialogTrigger>
         <DialogContent
           title="Test"
