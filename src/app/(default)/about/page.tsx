@@ -18,6 +18,7 @@ import DialogContent from "@/components/ui-custom/DialogContent";
 import NumberAnimation from "@/components/animation/NumberAnimation";
 import StaggerTest from "@/components/feature/StaggerTest";
 import RotatingAroundDivAnimation from "@/components/animation/RotatingAroundDivAnimation";
+import Movie from "@/components/feature/Movie";
 
 export default function AboutPage() {
   const test = use(trpcClient.hello.query("world"));
@@ -92,6 +93,7 @@ export default function AboutPage() {
             <Button>Read our docs</Button>
           </CardFooter>
         </Card>
+        <Movie />
       </RotatingAroundDivAnimation>
     </RootWrapAnimation>
   );

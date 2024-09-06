@@ -16,7 +16,7 @@ const handler = (request: Request) => {
     ): object | Promise<object> {
       return {};
     },
-  });
+  } as any);
 };
 
 export { handler as GET, handler as POST };

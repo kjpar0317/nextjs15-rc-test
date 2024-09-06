@@ -1,15 +1,13 @@
-"use client";
-
 import { use } from "react";
 
-import { getMovie } from "@/api/movie";
+import { trpcClient } from "@/server/router";
 
 export default function Movie() {
-  const { results } = use(getMovie());
+  const { results } = use(trpcClient.movieList.query());
 
   return (
     <>
-      {results.map((result: any, index: number) => (
+      {results?.map((result: any, index: number) => (
         <div key={index}>{result.title}</div>
       ))}
     </>
