@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import RootWrapAnimation from "@/components/animation/RootWrapAnimation";
 import { Button } from "@/components/ui/button";
-import Label from "@/components/ui/custom/Label";
+import Label from "@/components/ui-custom/Label";
 import { Input } from "@/components/ui/input";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import {
@@ -12,7 +12,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import DialogContent from "@/components/ui/custom/DialogContent";
+import DialogContent from "@/components/ui-custom/DialogContent";
 import NumberAnimation from "@/components/animation/NumberAnimation";
 import StaggerTest from "@/components/feature/StaggerTest";
 import RotatingAroundDivAnimation from "@/components/animation/RotatingAroundDivAnimation";

@@ -1,19 +1,30 @@
+import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 
-export default function MovieSkeleton() {
+interface CardSkeletonProps {
+  title?: string;
+  subtitle?: string;
+  className?: string;
+}
+
+export default function CardSkeleton({
+  title,
+  subtitle,
+  className,
+}: Readonly<CardSkeletonProps>) {
   return (
-    <Card className="w-[350px]">
+    <Card className={cn("", className)}>
       <CardHeader>
-        <CardTitle>Create project</CardTitle>
-        <CardDescription>Deploy your new project in one-click.</CardDescription>
+        <CardTitle>
+          {(title && <span>{title}</span>) || <Skeleton className="w-8" />}
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <form>

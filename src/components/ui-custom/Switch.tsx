@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import * as SwitchPrimitives from "@radix-ui/react-switch";
 import { isString } from "lodash-es";
 
-import Label from "@/components/ui/custom/Label";
+import Label from "@/components/ui-custom/Label";
 import { Switch as OrgSwitch } from "@/components/ui/switch";
 
 export interface SwitchProps extends SwitchPrimitives.SwitchProps {

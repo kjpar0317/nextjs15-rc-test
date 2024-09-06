@@ -1,6 +1,5 @@
 "use client";
 
-import { Suspense } from "react";
 import * as SelectPrimitive from "@radix-ui/react-select";
 import { motion } from "framer-motion";
 
@@ -29,6 +28,7 @@ export interface SelectProps extends SelectPrimitive.SelectProps {
   list: SelectCodeProps[];
   placeholder?: string;
   select?: string;
+  loading?: boolean;
   className?: string;
 }
 
@@ -36,6 +36,7 @@ export default function Label({
   list,
   placeholder,
   select,
+  loading = false,
   className,
   ...rest
 }: Readonly<SelectProps>) {
@@ -45,7 +46,7 @@ export default function Label({
       whileHover={ANIMATE_COMMON_HOVER}
       // whileTap={ANIMATE_COMMON_TAP}
     >
-      <Suspense fallback={<OneLineSkeleton />}>
+      {(!loading && (
         <Select {...rest}>
           <SelectTrigger className={className}>
             <SelectValue placeholder={placeholder} />
@@ -74,7 +75,7 @@ export default function Label({
             </SelectGroup>
           </SelectContent>
         </Select>
-      </Suspense>
+      )) || <OneLineSkeleton />}
     </motion.div>
   );
 }

@@ -48,11 +48,21 @@ export interface ButtonProps
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
   loading?: boolean;
+  animate?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    { className, variant, size, asChild = false, loading, children, ...props },
+    {
+      className,
+      variant,
+      size,
+      asChild = false,
+      loading,
+      animate = true,
+      children,
+      ...props
+    },
     ref
   ) => {
     const { theme } = useTheme();
@@ -89,8 +99,13 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <motion.div
-        variants={ANIMATE_VARIANTS.action}
-        whileHover={theme === "dark" ? ANIMATE_DARK_HOVER : ANIMATE_LIGHT_HOVER}
+        variants={(animate && ANIMATE_VARIANTS.action) || ""}
+        whileHover={
+          (!props.disabled &&
+            animate &&
+            (theme === "dark" ? ANIMATE_DARK_HOVER : ANIMATE_LIGHT_HOVER)) ||
+          ""
+        }
         // whilleTap={ANIMATE_COMMON_TAP}
       >
         <button

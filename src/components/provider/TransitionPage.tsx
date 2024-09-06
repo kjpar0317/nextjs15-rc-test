@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 
 export default function TransitionPage({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   const pathname = usePathname();
   return (
     <motion.div

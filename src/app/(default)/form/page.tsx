@@ -1,5 +1,5 @@
 import { Checkbox } from "@/components/ui/checkbox";
-import Label from "@/components/ui/custom/Label";
+import Label from "@/components/ui-custom/Label";
 import { Input } from "@/components/ui/input";
 import {
   Card,
@@ -11,8 +11,8 @@ import {
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import Select from "@/components/ui/custom/Select";
-import Radio from "@/components/ui/custom/Radio";
+import Select from "@/components/ui-custom/Select";
+import Radio from "@/components/ui-custom/Radio";
 import { Textarea } from "@/components/ui/textarea";
 import RootWrapAnimation from "@/components/animation/RootWrapAnimation";
 import TextAnimation from "@/components/animation/TextAnimation";

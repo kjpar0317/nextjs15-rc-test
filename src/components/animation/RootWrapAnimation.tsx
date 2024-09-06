@@ -41,7 +41,7 @@ export default function RootWrapAnimation({
       <AnimatePresence>
         <motion.div
           variants={!parallel ? staggerAnimate : {}}
-          initial="init"
+          initial="initial"
           animate="animate"
           trasition="transition"
           exit="exit"

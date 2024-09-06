@@ -9,18 +9,16 @@ export default function ButtonCellRenderer(props: Readonly<any>) {
   }
 
   return (
-    <>
-      <div className="w-full flex justify-center">
-        {includes(props.values, "delete") && (
-          <Button
-            size="icon"
-            className="w-7 h-7 bg-red-700 hover:bg-red-900"
-            onClick={() => handleClick(props.data)}
-          >
-            <IoCloseOutline />
-          </Button>
-        )}
-      </div>
-    </>
+    <div className="w-full flex justify-center">
+      {includes(props.values, "delete") && (
+        <Button
+          size="icon"
+          className="w-7 h-7 bg-red-700 hover:bg-red-900"
+          onClick={() => handleClick(props.data)}
+        >
+          <IoCloseOutline />
+        </Button>
+      )}
+    </div>
   );
 }

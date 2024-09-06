@@ -3,7 +3,7 @@
 import { useTheme } from "next-themes";
 
 import { useEffect } from "react";
-import Switch from "@/components/ui/custom/Switch";
+import Switch from "@/components/ui-custom/Switch";
 
 export default function Header() {
   const { setTheme } = useTheme();

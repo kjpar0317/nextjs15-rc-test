@@ -1,7 +1,5 @@
 import type { ReactNode } from "react";
 
-import { Suspense } from "react";
-
 import {
   DialogContent as OrgDialogContent,
   DialogHeader,
@@ -17,18 +15,22 @@ import RootWrapAnimation from "@/components/animation/RootWrapAnimation";
 export interface DialogContentProps {
   title?: string;
   subTitle?: string;
+  loading?: boolean;
+  className?: string;
   children?: ReactNode;
   onClose?: () => void;
 }
 
 export default function DialogContent({
   title,
-  subTitle = "",
+  subTitle,
+  loading = false,
+  className = "",
   children,
   onClose,
 }: Readonly<DialogContentProps>) {
   return (
-    <OrgDialogContent>
+    <OrgDialogContent className={className}>
       <RootWrapAnimation parallel>
         <DialogHeader>
           {title && (
@@ -36,13 +38,18 @@ export default function DialogContent({
               <TextAnimation text={title} />
             </DialogTitle>
           )}
-          <DialogDescription>
-            <TextAnimation text={subTitle} />
+          {/* {subTitle && (
+            <DialogDescription aria-describedby={title}>
+              <TextAnimation text={subTitle} />
+            </DialogDescription>
+          )} */}
+          <DialogDescription aria-describedby={title}>
+            <TextAnimation text={subTitle ?? ""} />
           </DialogDescription>
         </DialogHeader>
-        <Suspense fallback={<CardSkeleton />}>{children}</Suspense>
+        {(!loading && children) || <CardSkeleton />}
         <DialogFooter>
-          {onClose && <Button onClick={() => onClose()}>Close</Button>}
+          {onClose && <Button type="submit">닫기</Button>}
         </DialogFooter>
       </RootWrapAnimation>
     </OrgDialogContent>

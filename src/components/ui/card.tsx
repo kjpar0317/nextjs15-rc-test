@@ -8,22 +8,24 @@ import { cn } from "@/lib/utils";
 import CardSkeleton from "@/components/skeleton/CardSkeleton";
 
 const Card = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <React.Suspense fallback={<CardSkeleton />}>
-    <motion.div variants={ANIMATE_VARIANTS.expand}>
-      <div
-        ref={ref}
-        className={cn(
-          "rounded-lg border bg-card text-card-foreground shadow-sm",
-          className
-        )}
-        {...props}
-      />
-    </motion.div>
-  </React.Suspense>
-));
+  HTMLDivElement & { loading?: boolean },
+  React.HTMLAttributes<HTMLDivElement> & { loading?: boolean }
+>(({ className, loading = false, ...props }, ref) => {
+  return (
+    (!loading && (
+      <motion.div variants={ANIMATE_VARIANTS.expand}>
+        <div
+          ref={ref}
+          className={cn(
+            "rounded-lg border bg-card text-card-foreground shadow-sm",
+            className
+          )}
+          {...props}
+        />
+      </motion.div>
+    )) || <CardSkeleton />
+  );
+});
 Card.displayName = "Card";
 
 const CardHeader = React.forwardRef<

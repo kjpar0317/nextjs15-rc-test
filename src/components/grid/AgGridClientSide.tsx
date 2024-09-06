@@ -57,6 +57,10 @@ export default function AgGridClientSide({
   }, [defaultColDef, skeleton]);
 
   useEffect(() => {
+    return () => gridApi?.destroy();
+  }, []);
+
+  useEffect(() => {
     if (gridApi) {
       startTransition(() => {
         gridApi.refreshCells({ force: true });

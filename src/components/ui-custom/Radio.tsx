@@ -1,13 +1,12 @@
 "use client";
 
-import { Suspense } from "react";
 import { motion } from "framer-motion";
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 
 import { ANIMATE_VARIANTS, ANIMATE_COMMON_HOVER } from "@/constant/animate";
 import { cn } from "@/lib/utils";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import Label from "@/components/ui/custom/Label";
+import Label from "@/components/ui-custom/Label";
 import OneLineSkeleton from "@/components/skeleton/OneLineSkeleton";
 
 export interface RadioCodeProps {
@@ -18,18 +17,20 @@ export interface RadioCodeProps {
 export interface RadioProps extends RadioGroupPrimitive.RadioGroupProps {
   list: RadioCodeProps[];
   select?: string;
+  loading?: boolean;
 }
 
 export default function Radio({
   list,
   select,
   orientation,
+  loading = false,
   className,
   ...rest
 }: Readonly<RadioProps>) {
   return (
     <motion.div variants={ANIMATE_VARIANTS.expand}>
-      <Suspense fallback={<OneLineSkeleton />}>
+      {(!loading && (
         <RadioGroup
           defaultValue={select}
           className={cn(
@@ -52,7 +53,7 @@ export default function Radio({
               </div>
             ))}
         </RadioGroup>
-      </Suspense>
+      )) || <OneLineSkeleton />}
     </motion.div>
   );
 }
