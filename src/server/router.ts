@@ -1,6 +1,6 @@
 import { initTRPC, TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { createTRPCProxyClient, httpBatchLink } from "@trpc/client";
+import { createTRPCProxyClient, httpBatchLink, loggerLink } from "@trpc/client";
 import superjson from "superjson";
 
 import { Context } from "@/server/context";
@@ -35,6 +35,11 @@ export type AppRouter = typeof appRouter;
 
 export const trpcClient = createTRPCProxyClient<AppRouter>({
   links: [
+    loggerLink({
+      enabled: (opts) =>
+        process.env.NODE_ENV === "development" ||
+        (opts.direction === "down" && opts.result instanceof Error),
+    }),
     httpBatchLink({
       url: "http://localhost:3001/api/trpc",
     }),
