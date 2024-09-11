@@ -10,28 +10,17 @@ import TextAnimation from "@/components/animation/TextAnimation";
 export default function Login() {
   const router = useRouter();
   const [error, submitAction, isPending] = useActionState(
-    async (prevStatus: boolean, formData: any) => {
-      await trpcClient.login.mutate({
-        email: formData.get("email"),
-        password: formData.get("password"),
-      });
+    async (prevStatus: Token, formData: FormData) => {
+      const result = (await trpcClient.login.mutate({
+        email: formData.get("email") as string,
+        password: formData.get("password") as string,
+      })) as any;
 
       router.replace("/dashboard");
-      return true;
+      return result;
     },
-    false
+    { status: false, token: "" }
   );
-
-  // const handleSubmit = async () => {
-  //   startTransition(async () => {
-  //     // const error = await updateName(name);
-  //     // if (error) {
-  //     //   setError(error);
-  //     //   return;
-  //     // }
-  //     router.replace("/dashboard");
-  //   });
-  // };
 
   return (
     <div className="login-app">
@@ -122,7 +111,7 @@ export default function Login() {
                   </div>
 
                   <div className="flex items-center justify-between">
-                    {error}
+                    {/* {error} */}
                   </div>
                   <div>
                     <motion.button

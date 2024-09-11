@@ -1,4 +1,5 @@
 import type { ProcedureBuilder } from "@trpc/server";
+
 import { z } from "zod";
 import jwt from "jsonwebtoken";
 import { setCookie, deleteCookie } from "cookies-next";
@@ -21,7 +22,7 @@ export function authRouter(router: ProcedureBuilder<any>) {
         //   throw new Error("Invalid email or password");
         // }
 
-        const user = {
+        const user: Login = {
           email: "test@test.com",
           password: "1234",
         };
@@ -36,12 +37,12 @@ export function authRouter(router: ProcedureBuilder<any>) {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
             path: "/",
-            expires: new Date(Date.now() + 60 * 60 * 1000),
+            maxAge: 60 * 60,
             sameSite: "strict",
           });
 
           return {
-            status: "success",
+            status: true,
             token,
           };
         } catch (err: any) {

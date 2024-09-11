@@ -1,12 +1,13 @@
 import type { NextRequest } from "next/server";
 
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
+import { getCookie } from "cookies-next";
 
 import { appRouter } from "@/server/router";
 import { createContext } from "@/server/context";
 
 const handler = (request: NextRequest) => {
-  console.log(request);
+  console.log(`token: ${getCookie("token", { req: request })}`);
   console.log(`incoming request ${request.url}`);
   return fetchRequestHandler({
     endpoint: "/api/trpc",
