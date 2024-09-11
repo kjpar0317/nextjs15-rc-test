@@ -1,9 +1,20 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 
+import { trpcClient } from "@/server/router";
 import { Button } from "@/components/ui/button";
 
 export default function Footer() {
+  const router = useRouter();
+
+  async function handleLogout() {
+    await trpcClient.logout.mutate();
+    router.push("/");
+  }
+
   return (
     <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
       <Link
@@ -50,8 +61,9 @@ export default function Footer() {
       </Link>
       <Link
         className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-        href="/"
+        href="/#"
         rel="noopener noreferrer"
+        onClick={handleLogout}
       >
         Logout
       </Link>

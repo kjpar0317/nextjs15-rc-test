@@ -4,16 +4,18 @@ import { useActionState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 
+import { trpcClient } from "@/server/router";
 import TextAnimation from "@/components/animation/TextAnimation";
 
 export default function Login() {
   const router = useRouter();
   const [error, submitAction, isPending] = useActionState(
-    async (formData: any) => {
-      // const error = await updateName(formData.get("name"));
-      // if (error) {
-      //   return error;
-      // }
+    async (prevStatus: boolean, formData: any) => {
+      await trpcClient.login.mutate({
+        email: formData.get("email"),
+        password: formData.get("password"),
+      });
+
       router.replace("/dashboard");
       return true;
     },
@@ -94,7 +96,7 @@ export default function Login() {
                 <div className="space-y-6">
                   <div className="">
                     <motion.input
-                      id="id"
+                      name="email"
                       type="text"
                       className="w-full text-sm text-gray-700  px-4 py-3 bg-gray-200 focus:bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:border-purple-400"
                       placeholder="Login ID"
@@ -107,7 +109,7 @@ export default function Login() {
 
                   <div className="relative">
                     <motion.input
-                      id="password"
+                      name="password"
                       type="password"
                       className="w-full text-sm text-gray-700 px-4 py-3 rounded-lg bg-gray-200 focus:bg-gray-100 border border-gray-200 focus:outline-none focus:border-purple-400"
                       placeholder="Login Password"

@@ -1,5 +1,5 @@
-import { deserializeUser } from "@/server/middleware";
 import { inferAsyncReturnType } from "@trpc/server";
+import { deserializeUser } from "./middleware";
 
 export const createContext = async () => deserializeUser();
 

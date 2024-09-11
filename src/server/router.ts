@@ -1,14 +1,15 @@
 import { initTRPC, TRPCError } from "@trpc/server";
-import { z } from "zod";
 import { createTRPCProxyClient, httpBatchLink, loggerLink } from "@trpc/client";
-import superjson from "superjson";
 
-import { Context } from "@/server/context";
+import { Context } from "./context";
+import { authRouter } from "./service/auth";
 import { etcRouter } from "@/server/service/hello";
 import { movieRouter } from "@/server/service/movie";
 
 export const t = initTRPC.context<Context>().create({
-  // transformer: superjson,
+  isServer: true,
+  // OTHER SOLUTION MIGHT BE TO USE THE FOLLOWING:
+  allowOutsideOfServer: true,
 });
 
 const isAuthed = t.middleware(({ next, ctx }) => {
@@ -27,6 +28,7 @@ export const protectedProcedure = t.procedure.use(isAuthed);
 const router = t.router;
 
 export const appRouter = router({
+  ...authRouter(publicProcedure),
   ...movieRouter(publicProcedure),
   ...etcRouter(publicProcedure),
 });
@@ -42,6 +44,12 @@ export const trpcClient = createTRPCProxyClient<AppRouter>({
     }),
     httpBatchLink({
       url: "http://localhost:3001/api/trpc",
+      fetch: async (input, init?) => {
+        return fetch(input, {
+          ...init,
+          credentials: "include",
+        });
+      },
     }),
   ],
 });

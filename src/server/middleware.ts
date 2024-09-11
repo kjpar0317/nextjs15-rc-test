@@ -1,15 +1,14 @@
 import { TRPCError } from "@trpc/server";
 import jwt from "jsonwebtoken";
+import { getCookie, hasCookie } from "cookies-next";
 import { cookies } from "next/headers";
 
-import { mariadb_query } from "@/lib/db-utils";
-
 export const deserializeUser = async () => {
-  const cookieStore = cookies();
   try {
     let token;
-    if (cookieStore.get("token")) {
-      token = cookieStore.get("token")?.value;
+
+    if (hasCookie("token")) {
+      token = getCookie("token", { cookies });
     }
 
     const notAuthenticated = {
@@ -27,10 +26,12 @@ export const deserializeUser = async () => {
       return notAuthenticated;
     }
 
-    const user = await mariadb_query(
-      `SELECT * FROM users WHERE id = ?`,
-      decoded.sub
-    );
+    // const user = await prisma.user.findUnique({ where: { id: decoded.sub } });
+    const user = {
+      email: "test@test.com",
+      password: "1234",
+      name: "test",
+    };
 
     if (!user) {
       return notAuthenticated;
