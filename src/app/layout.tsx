@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { CookiesProvider } from "next-client-cookies/server";
 
 import "./globals.css";
 
@@ -28,7 +29,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} w-full h-full`}
       >
         <main className="flex flex-col gap-8 row-start-2 items-center justify-items-center justify-center w-full h-full">
-          {children}
+          <CookiesProvider>{children}</CookiesProvider>
         </main>
       </body>
     </html>

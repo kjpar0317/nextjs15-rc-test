@@ -1,19 +1,21 @@
-import type { NextRequest } from "next/server";
+import type { NextRequest, NextResponse } from "next/server";
 
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
-import { getCookie } from "cookies-next";
+import { getCookies } from "next-client-cookies/server";
 
 import { appRouter } from "@/server/router";
 import { createContext } from "@/server/context";
 
-const handler = (request: NextRequest) => {
-  console.log(`token: ${getCookie("token", { req: request })}`);
+const handler = (request: NextRequest, res: NextResponse) => {
+  console.log(getCookies());
+  console.log(res);
+  console.log(`cookie: ${request.cookies}`);
   console.log(`incoming request ${request.url}`);
   return fetchRequestHandler({
     endpoint: "/api/trpc",
     req: request,
     router: appRouter,
-    createContext: () => createContext(),
+    createContext: (opts) => createContext(opts),
     onError:
       process.env.NODE_ENV === "development"
         ? ({ path, error }) => {

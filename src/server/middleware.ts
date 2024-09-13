@@ -1,16 +1,13 @@
 import { TRPCError } from "@trpc/server";
 import jwt from "jsonwebtoken";
-import { getCookie, hasCookie } from "cookies-next";
+import { cookies } from "next/headers";
 
 export const deserializeUser = async () => {
+  const cookieStore = cookies();
   try {
-    let token;
+    const token = cookieStore.get("token")?.value;
 
-    console.log(getCookie("token"));
-
-    if (hasCookie("token")) {
-      token = getCookie("token");
-    }
+    console.log(`token: ${token}`);
 
     const notAuthenticated = {
       user: null,
@@ -20,7 +17,7 @@ export const deserializeUser = async () => {
       return notAuthenticated;
     }
 
-    const secret = process.env.JWT_SECRET!;
+    const secret = process.env.NEXTAUTH_SECRET!;
     const decoded = jwt.verify(token, secret) as { sub: string };
 
     if (!decoded) {

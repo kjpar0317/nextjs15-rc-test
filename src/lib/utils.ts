@@ -43,3 +43,36 @@ export function currency(
     minimumFractionDigits: 0,
   }).format(Number(num));
 }
+
+const CACHE_GROUP_NAME = "test";
+
+export async function setCachedData(cacheName: string, data: any) {
+  if (!caches) return null;
+  const cacheStorage = await caches.open(CACHE_GROUP_NAME);
+  await cacheStorage.put(cacheName, new Response(JSON.stringify(data)));
+}
+
+export async function getCachedData(cacheName: string) {
+  if (!caches) return null;
+  const cacheStorage = await caches.open(CACHE_GROUP_NAME);
+  const cachedResponse = await cacheStorage.match(cacheName);
+
+  if (!cachedResponse?.ok) {
+    return false;
+  }
+
+  return await cachedResponse.json();
+}
+
+export async function deleteCaches(cacheName: string) {
+  if (!caches) return null;
+  // const keys = await caches.keys();
+
+  // for (const key of keys) {
+  //   const isOurCache = key.startsWith("myapp-");
+  //   if (cacheName === key || !isOurCache) {
+  //     continue;
+  //   }
+  // }
+  caches.delete(cacheName);
+}

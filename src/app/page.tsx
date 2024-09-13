@@ -4,17 +4,28 @@ import { useActionState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 
+import { useCookies } from "next-client-cookies";
 import { trpcClient } from "@/server/router";
 import TextAnimation from "@/components/animation/TextAnimation";
 
 export default function Login() {
+  const cookies = useCookies();
   const router = useRouter();
   const [error, submitAction, isPending] = useActionState(
     async (prevStatus: Token, formData: FormData) => {
-      const result = (await trpcClient.login.mutate({
+      const result = await trpcClient.login.mutate({
         email: formData.get("email") as string,
         password: formData.get("password") as string,
-      })) as any;
+      });
+
+      console.log(result);
+
+      // cookies.set("token", result.token, {
+      //   secure: process.env.NODE_ENV === "production",
+      //   path: "/",
+      //   expires: 60 * 60,
+      //   sameSite: "strict",
+      // });
 
       router.replace("/dashboard");
       return result;

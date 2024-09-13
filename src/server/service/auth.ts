@@ -2,7 +2,7 @@ import type { ProcedureBuilder } from "@trpc/server";
 
 import { z } from "zod";
 import jwt from "jsonwebtoken";
-import { setCookie, deleteCookie } from "cookies-next";
+import { getCookies } from "next-client-cookies/server";
 
 export function authRouter(router: ProcedureBuilder<any>) {
   return {
@@ -32,13 +32,15 @@ export function authRouter(router: ProcedureBuilder<any>) {
           const token = jwt.sign({ sub: user.email }, secret, {
             expiresIn: 60 * 60,
           });
+          // const response = NextResponse.json({
+          //   status: true,
+          //   token,
+          // });
 
-          setCookie("token", token, {
-            httpOnly: true,
+          getCookies().set("token", token, {
             secure: process.env.NODE_ENV === "production",
             path: "/",
-            maxAge: 60 * 60,
-            sameSite: "strict",
+            expires: 60 * 60,
           });
 
           return {
@@ -50,7 +52,7 @@ export function authRouter(router: ProcedureBuilder<any>) {
         }
       }),
     logout: router.mutation(async () => {
-      deleteCookie("token");
+      getCookies().remove("token");
     }),
   };
 }

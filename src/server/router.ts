@@ -1,5 +1,6 @@
 import { initTRPC, TRPCError } from "@trpc/server";
 import { createTRPCProxyClient, httpBatchLink, loggerLink } from "@trpc/client";
+import { getCookies } from "next-client-cookies/server";
 
 import { Context } from "./context";
 import { authRouter } from "./service/auth";
@@ -29,7 +30,7 @@ const router = t.router;
 
 export const appRouter = router({
   ...authRouter(publicProcedure),
-  ...movieRouter(publicProcedure),
+  ...movieRouter(protectedProcedure),
   ...etcRouter(publicProcedure),
 });
 
@@ -47,6 +48,10 @@ export const trpcClient = createTRPCProxyClient<AppRouter>({
       fetch: async (input, init?) => {
         return fetch(input, {
           ...init,
+          headers: {
+            ...init?.headers,
+            "Set-Cookie": "sdadsadsda",
+          },
           credentials: "include",
         });
       },
