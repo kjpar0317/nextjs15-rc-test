@@ -1,9 +1,7 @@
-import { use } from "react";
+import { trpcClient } from "@/lib/trpc";
 
-import { trpcClient } from "@/server/router";
-
-export default function Movie() {
-  const { results } = use(trpcClient.movieList.query());
+export default async function Movie() {
+  const { results }: any = await trpcClient.movie.movieList.query();
 
   return (
     <>

@@ -4,14 +4,14 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 
-import { trpcClient } from "@/server/router";
+import { trpcClient } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 
 export default function Footer() {
   const router = useRouter();
 
   async function handleLogout() {
-    await trpcClient.logout.mutate();
+    await trpcClient.auth.logout.mutate();
     router.push("/");
   }
 

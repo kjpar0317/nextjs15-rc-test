@@ -1,8 +1,10 @@
+import type { NextRequest } from "next/server";
+import { NextApiRequest, NextApiResponse } from "next";
 import { TRPCError } from "@trpc/server";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 
-export const deserializeUser = async () => {
+export const deserializeUser = async (res: NextApiResponse) => {
   const cookieStore = cookies();
   try {
     const token = cookieStore.get("token")?.value;
@@ -36,7 +38,9 @@ export const deserializeUser = async () => {
     }
 
     const { password, ...userWithoutPassword } = user;
+    console.log(userWithoutPassword);
     return {
+      res,
       user: userWithoutPassword,
     };
   } catch (err: any) {

@@ -1,9 +1,10 @@
-import { inferAsyncReturnType } from "@trpc/server";
+import { NextApiRequest, NextApiResponse } from "next";
 
 import { deserializeUser } from "./middleware";
 
-export const createContext = async (opts: any) => {
-  return deserializeUser();
+export const createContext = async (res: NextApiResponse) => {
+  console.log(res);
+  return deserializeUser(res);
 };
 
-export type Context = inferAsyncReturnType<typeof createContext>;
+export type Context = Awaited<ReturnType<typeof createContext>>;

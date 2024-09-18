@@ -1,6 +1,6 @@
 import { use } from "react";
 import Image from "next/image";
-import { trpcClient } from "@/server/router";
+import { trpcClient } from "@/lib/trpc";
 
 import RootWrapAnimation from "@/components/animation/RootWrapAnimation";
 import { Button } from "@/components/ui/button";
@@ -21,7 +21,7 @@ import RotatingAroundDivAnimation from "@/components/animation/RotatingAroundDiv
 import Movie from "@/components/feature/Movie";
 
 export default function AboutPage() {
-  const test = use(trpcClient.hello.query("world"));
+  const test: string = use(trpcClient.etc.hello.query("world"));
 
   return (
     <RootWrapAnimation>
