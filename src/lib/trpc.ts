@@ -18,6 +18,17 @@ export const trpcClient = createTRPCClient<AppRouter>({
           credentials: "include",
         });
       },
+      async headers() {
+        if (typeof window === "undefined") {
+          return {
+            "x-trpc-token": await require("next/headers")
+              .cookies()
+              ?.get("token")?.value,
+          };
+        }
+
+        return {};
+      },
     } as any),
   ],
 });

@@ -1,10 +1,6 @@
 import { initTRPC, TRPCError } from "@trpc/server";
-import superjson from "superjson";
 
 import { Context } from "./context";
-import { authRouter } from "@/server/service/auth";
-import { etcRouter } from "@/server/service/hello";
-import { movieRouter } from "@/server/service/movie";
 
 export const t = initTRPC.context<Context>().create({
   // isServer: true,

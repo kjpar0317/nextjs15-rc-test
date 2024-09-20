@@ -1,14 +1,11 @@
-import type { NextRequest } from "next/server";
-import { NextApiRequest, NextApiResponse } from "next";
 import { TRPCError } from "@trpc/server";
 import jwt from "jsonwebtoken";
-import { cookies } from "next/headers";
 
-export const deserializeUser = async (res: NextApiResponse) => {
-  const cookieStore = cookies();
+export const deserializeUser = async (req: Request) => {
+  const allHeaders = Object.fromEntries(req.headers.entries() ?? []);
+
   try {
-    const token = cookieStore.get("token")?.value;
-
+    const token = allHeaders["x-trpc-token"];
     console.log(`token: ${token}`);
 
     const notAuthenticated = {
@@ -38,9 +35,9 @@ export const deserializeUser = async (res: NextApiResponse) => {
     }
 
     const { password, ...userWithoutPassword } = user;
-    console.log(userWithoutPassword);
+    // console.log(userWithoutPassword);
     return {
-      res,
+      req,
       user: userWithoutPassword,
     };
   } catch (err: any) {

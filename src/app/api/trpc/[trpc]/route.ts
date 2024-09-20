@@ -6,15 +6,11 @@ import { appRouter } from "@/server/router";
 import { createContext } from "@/server/context";
 
 const handler = (request: NextApiRequest, res: NextApiResponse) => {
-  console.log(request);
-  console.log(res);
-  console.log(`cookie: ${request.cookies}`);
-  console.log(`incoming request ${request.url}`);
   return fetchRequestHandler({
     endpoint: "/api/trpc",
     req: request as any,
     router: appRouter,
-    createContext: () => createContext(res),
+    createContext: ({ req }) => createContext(req),
     onError:
       process.env.NODE_ENV === "development"
         ? ({ path, error }) => {

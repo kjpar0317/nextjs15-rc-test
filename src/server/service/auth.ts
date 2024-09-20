@@ -33,23 +33,14 @@ export const authRouter = router({
         const token = jwt.sign({ sub: user.email }, secret, {
           expiresIn: 60 * 60,
         });
-        // const response = NextResponse.json({
-        //   status: true,
-        //   token,
-        // });
 
         cookieStore.set("token", token, {
           path: "/",
-          maxAge: 60 * 60,
+          expires: new Date(Date.now() + 60 * 60 * 1000),
           httpOnly: true,
           secure: process.env.NODE_ENV === "production",
-          sameSite: "none",
+          sameSite: "lax",
         });
-
-        // ctx.res.setHeader(
-        //   "Set-Cookie",
-        //   `token=${token}; Path=/; MaxAge=60 * 60; HttpOnly; Secure; SameSite=Lax`
-        // );
 
         return {
           status: true,
@@ -60,13 +51,9 @@ export const authRouter = router({
       }
     }),
   logout: publicProcedure.mutation(async ({ ctx }: any) => {
-    const cookieStore = cookies();
-    cookieStore.set("token", "", {
-      path: "/",
-      maxAge: 0,
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "none",
-    });
+    ctx.res.setHeader(
+      "Set-Cookie",
+      "token=; Path=/; Max-Age=0, Secure; HttpOnly; SameSite=Lax"
+    );
   }),
 });
