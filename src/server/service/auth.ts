@@ -8,7 +8,7 @@ export const authRouter = router({
     .input(z.object({ email: z.string(), password: z.string() }))
     .mutation(async ({ input }: any) => {
       console.log("login");
-      const cookieStore = cookies();
+      const cookieStore = await cookies();
       // console.log(ctx);
       // const user = await mariadb_query(
       //   `SELECT * FROM users WHERE email = ?`,
@@ -51,7 +51,7 @@ export const authRouter = router({
       }
     }),
   logout: publicProcedure.mutation(async ({ ctx }: any) => {
-    const cookieStore = cookies();
+    const cookieStore = await cookies();
     // ctx.res.setHeader(
     //   "Set-Cookie",
     //   "token=; Path=/; Max-Age=0, Secure; HttpOnly; SameSite=Lax"

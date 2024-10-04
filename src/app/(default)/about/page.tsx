@@ -16,9 +16,9 @@ import {
 } from "@/components/ui/card";
 import DialogContent from "@/components/ui-custom/DialogContent";
 import NumberAnimation from "@/components/animation/NumberAnimation";
-import StaggerTest from "@/components/feature/StaggerTest";
+import StaggerTest from "@/components/feature/about/StaggerTest";
 import RotatingAroundDivAnimation from "@/components/animation/RotatingAroundDivAnimation";
-import Movie from "@/components/feature/Movie";
+import Movie from "@/components/feature/about/Movie";
 
 export default function AboutPage() {
   const test: string = use(trpcClient.etc.hello.query("world"));
