@@ -51,9 +51,17 @@ export const authRouter = router({
       }
     }),
   logout: publicProcedure.mutation(async ({ ctx }: any) => {
-    ctx.res.setHeader(
-      "Set-Cookie",
-      "token=; Path=/; Max-Age=0, Secure; HttpOnly; SameSite=Lax"
-    );
+    const cookieStore = cookies();
+    // ctx.res.setHeader(
+    //   "Set-Cookie",
+    //   "token=; Path=/; Max-Age=0, Secure; HttpOnly; SameSite=Lax"
+    // );
+    cookieStore.set("token", "", {
+      path: "/",
+      expires: new Date(Date.now() - 60 * 60 * 1000),
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+    });
   }),
 });
